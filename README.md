@@ -13,6 +13,7 @@ In most image, a part is more important than the rest of the picture. This plugi
 
 If you take a look at the source directory, you will see another jQuery plugin (brickwallFocusPointer). It will help you to choose the focus point of your pictures.
 See the demo for more details.
+The last - and not the least - it's responsive and can be dynamically reload!
 
 ### Licence ###
 
@@ -35,7 +36,7 @@ Pierre CLÉMENT <pierrecle@gmail.com>.
 Your "wall" must be in a defined element. Each "brick" of the wall must be a child element of the wall. Finally just add your image in the "brick" or any "brick" child. The basic structure is a list (ul/li/img), but it *should* work with every structure.
 **Last thing,** your image must have their width and height attributes with the good values.
 
-**Samples of structure that works:**
+**Samples of structure that should works:**
 
 ```html
 <ul>
@@ -80,13 +81,13 @@ Your "wall" must be in a defined element. Each "brick" of the wall must be a chi
 Just a basic example on how to use brickwallFocusPointer:
 
 ```javascript
-$('img').brickwall();
+$('ul').brickwall();
 ```
 
 To use update:
 
 ```javascript
-$('img').brickwall("update");
+$('ul').brickwall('update');
 ```
 
 ### brickwallFocusPointer ###
