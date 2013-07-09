@@ -5,10 +5,19 @@
 		<meta name="description" content="Demonstration of brickwall jQuery plugin, display image gallery like a brickwall" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-				<script src="../src/brickwall.js"></script>
+		<script src="../src/brickwall.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				$('ul').brickwall();
+				var userId = "95572727@N00";
+				$.getJSON("http://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=8f85607352609dad52e65cdf89b69ec3&user_id="+userId+"&extras=url_m&per_page=30&format=json&nojsoncallback=1&auth_token=72157634557819665-e091b97a513175ba&api_sig=13cef73e588e0d402d50175a57c96ffa", function(data) {
+					for(var i = 0; i < data.photos.photo.length; i++) {
+						var focusY = Math.floor((Math.random()*4)+1);
+						var focusX = Math.floor((Math.random()*4)+1);
+						var img = data.photos.photo[i];
+						$('ul').append('<li><a href="http://www.flickr.com/photos/'+userId+'/'+img.id+'" title="'+img.title+'"><img src="'+img.url_m+'" width="'+img.width_m+'" height="'+img.height_m+'" focus-y="'+focusY+'" focus-x="'+focusX+'"/></a></li>');
+					}
+					$('ul').brickwall();
+				});
 			});
 		</script>
 		<style>
@@ -24,11 +33,10 @@
 	</head>
 	<body>
 		<h1>Demonstration of brickwall</h1>
-		<p>This plugin allows you to display image like a brickwall, where all the pieces have the same height. Feel free to resize your browser ;)</p>
+		<p>This plugin allows you to display image like a brickwall, where all the pieces have the same height. Feel free to resize your browser ;)<br>PS: focus points are set randomly, and images are displayed from flickr, it can take a while to display images.</p>
 		<ul>
-			<li></li>
 		</ul>
-		<pre>It will come, be patient</pre>
+		<p>Images from Stock in Customs, under Creative Commons licence. Click on image for more information.</p>
 	</body>
 </html>
 
