@@ -37,7 +37,7 @@
                             'height': focusesHeight,
                             'top': focusesHeight*i,
                             'left': focusesWidth*j,
-                            'border': '1px solid #555'
+                            'border': $this.settings.borderSize+' solid '+$this.settings.borderColor
                         }).on("mouseenter", function() {
                             if(parseInt($(this).attr("focus")) != 1) {
                                 $(this).css("background-color", $this.settings.hoverColor);
@@ -87,6 +87,8 @@
     $.fn.brickwallFocusPointer.defaultSettings = {
     	'focusPoints': {'x': 5, 'y': 5},
         'hoverColor': 'rgba(255, 0, 0, 0.5)',
+        'borderSize': '1px',
+        'borderColor': '#555',
         'selectedColor': 'rgba(0, 200, 0, 0.5)',
         'onPointSelected': function(focusX, focusY) {
             alert("focus-x: "+focusX+", focus-y:"+focusY);
