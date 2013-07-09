@@ -13,7 +13,8 @@ In most image, a part is more important than the rest of the picture. This plugi
 
 If you take a look at the source directory, you will see another jQuery plugin (brickwallFocusPointer). It will help you to choose the focus point of your pictures.
 See the demo for more details.
-The last - and not the least - it's responsive and can be dynamically reload!
+
+The last - and not the least - it's responsive and can be dynamically reloaded!
 
 ### Licence ###
 
