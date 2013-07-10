@@ -8,16 +8,12 @@
 		<script src="../src/brickwall.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				var userId = "95572727@N00";
-				$.getJSON("http://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=8f85607352609dad52e65cdf89b69ec3&user_id="+userId+"&extras=url_m&per_page=30&format=json&nojsoncallback=1&auth_token=72157634557819665-e091b97a513175ba&api_sig=13cef73e588e0d402d50175a57c96ffa", function(data) {
-					for(var i = 0; i < data.photos.photo.length; i++) {
-						var focusY = Math.floor((Math.random()*4)+1);
-						var focusX = Math.floor((Math.random()*4)+1);
-						var img = data.photos.photo[i];
-						$('ul').append('<li><a href="http://www.flickr.com/photos/'+userId+'/'+img.id+'" title="'+img.title+'"><img src="'+img.url_m+'" width="'+img.width_m+'" height="'+img.height_m+'" focus-y="'+focusY+'" focus-x="'+focusX+'"/></a></li>');
-					}
-					$('ul').brickwall();
+				$('img').each(function(i, element) {
+					var focusY = Math.floor((Math.random()*4)+1);
+					var focusX = Math.floor((Math.random()*4)+1);
+					$(element).attr({'focus-y': focusY, 'focus-x': focusX});
 				});
+				$('ul').brickwall();
 			});
 		</script>
 		<style>
@@ -35,6 +31,36 @@
 		<h1>Demonstration of brickwall</h1>
 		<p>This plugin allows you to display image like a brickwall, where all the pieces have the same height. Feel free to resize your browser ;)<br>PS: focus points are set randomly, and images are displayed from flickr, it can take a while to display images.</p>
 		<ul>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9241839148" title="The Old Room of Macabre Detritus"><img src="http://farm3.staticflickr.com/2866/9241839148_7c2113b3da.jpg" width="500" height="390" focus-y="3" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9212129419" title="The Mysterious UFO Device"><img src="http://farm4.staticflickr.com/3783/9212129419_b49d309b72.jpg" width="500" height="328" focus-y="2" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9165267580" title="Dark Street with Lanterns in China"><img src="http://farm6.staticflickr.com/5535/9165267580_f8dff6d25c.jpg" width="500" height="334" focus-y="2" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9128902604" title="Over Lake Tekapo"><img src="http://farm4.staticflickr.com/3723/9128902604_afc36363c9.jpg" width="500" height="343" focus-y="2" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9097171697" title="Wild Tokyo Streets"><img src="http://farm8.staticflickr.com/7364/9097171697_30e048d61e.jpg" width="500" height="333" focus-y="2" focus-x="2"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9070571588" title="The Mighty Trees at Glen Oaks Big Sur"><img src="http://farm8.staticflickr.com/7348/9070571588_3a8d9fbe6e.jpg" width="365" height="500" focus-y="1" focus-x="2"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/9017905853" title="The Old Streets of Beijing"><img src="http://farm8.staticflickr.com/7315/9017905853_6a3ec222bc.jpg" width="356" height="500" focus-y="3" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8979118188" title="Downtown Beijing After Rain"><img src="http://farm8.staticflickr.com/7292/8979118188_9d487574f3.jpg" width="500" height="331" focus-y="3" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8944334183" title="A Rainy Scene in Tokyo"><img src="http://farm6.staticflickr.com/5441/8944334183_058659c150.jpg" width="500" height="375" focus-y="4" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8892840831" title="Out in the Woods"><img src="http://farm6.staticflickr.com/5341/8892840831_630a2b1f0f.jpg" width="500" height="333" focus-y="2" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8880354382" title="The Rainbow Bridge in Tokyo"><img src="http://farm6.staticflickr.com/5327/8880354382_364b209ff7.jpg" width="500" height="332" focus-y="2" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8869523384" title="Windmill Over Still Lake"><img src="http://farm9.staticflickr.com/8273/8869523384_a6b6ff398d.jpg" width="500" height="304" focus-y="2" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8837173497" title="The Cinematic Country"><img src="http://farm8.staticflickr.com/7313/8837173497_62dd3f2a13.jpg" width="500" height="241" focus-y="3" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8816750662" title="Deeper into Milford Sound"><img src="http://farm9.staticflickr.com/8408/8816750662_df262caeef.jpg" width="330" height="500" focus-y="1" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8770556010" title="And on the Way to Paradise…"><img src="http://farm3.staticflickr.com/2853/8770556010_b01948d69d.jpg" width="358" height="500" focus-y="3" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8758800934" title="Tom with the Horse"><img src="http://farm9.staticflickr.com/8253/8758800934_4779f4c6eb.jpg" width="500" height="315" focus-y="2" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8735241655" title="Robots in the Streets of Tokyo!"><img src="http://farm8.staticflickr.com/7299/8735241655_8b6160521f.jpg" width="500" height="333" focus-y="3" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8735260047" title="Ancient Mount Fuji Village"><img src="http://farm8.staticflickr.com/7310/8735260047_6162275bd3.jpg" width="500" height="276" focus-y="2" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8716875846" title="Queenstown from the Air"><img src="http://farm8.staticflickr.com/7326/8716875846_f9a118dcfa.jpg" width="500" height="321" focus-y="3" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8710405691" title="The Cabin in the Forest at the Glen Oaks Big Sur"><img src="http://farm9.staticflickr.com/8275/8710405691_de0fb32b89.jpg" width="500" height="364" focus-y="2" focus-x="2"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8704121860" title="View from the Google Offices in Downtown Tokyo"><img src="http://farm9.staticflickr.com/8399/8704121860_3e598019ef.jpg" width="500" height="331" focus-y="1" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8692056510" title="Snow over the Creek"><img src="http://farm9.staticflickr.com/8119/8692056510_55be83a0aa.jpg" width="315" height="500" focus-y="1" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8694167202" title="The Dramatic Chateau"><img src="http://farm9.staticflickr.com/8544/8694167202_6f4ca5e5ed.jpg" width="500" height="336" focus-y="4" focus-x="4"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8694140720" title="Another Road Through an Endless Valley"><img src="http://farm9.staticflickr.com/8402/8694140720_6c95b37a0d.jpg" width="500" height="337" focus-y="2" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8692994801" title="Kayaks Along Lake Wakatipu"><img src="http://farm9.staticflickr.com/8394/8692994801_efd8948081.jpg" width="500" height="326" focus-y="3" focus-x="2"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8694079552" title="Road to the Woolshed"><img src="http://farm9.staticflickr.com/8403/8694079552_042f07f9c9.jpg" width="500" height="301" focus-y="3" focus-x="3"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8694036696" title="The New Garden Path Along the Great Wall of China"><img src="http://farm9.staticflickr.com/8253/8694036696_53b5a23720.jpg" width="500" height="292" focus-y="3" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8686957036" title="The Skies of Sydney"><img src="http://farm9.staticflickr.com/8402/8686957036_a02c9de788.jpg" width="500" height="333" focus-y="3" focus-x="2"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8672085859" title="Fun with the Fisheye in Paris"><img src="http://farm9.staticflickr.com/8124/8672085859_497154d57b.jpg" width="500" height="333" focus-y="4" focus-x="1"></a></li>
+			<li><a href="http://www.flickr.com/photos/95572727@N00/8672061349" title="Hay for the Winter"><img src="http://farm9.staticflickr.com/8386/8672061349_fae5c2cc2e.jpg" width="500" height="319" focus-y="1" focus-x="2"></a></li>
 		</ul>
 		<p>Images from Stock in Customs, under Creative Commons licence. Click on image for more information.</p>
 	</body>
