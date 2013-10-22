@@ -46,7 +46,11 @@
 	 */
 	function applyGridCss() {
 		var $this = this;
-		$this.elts.css({"display": "block", "float": "left", "margin": $this.settings.margin, "overflow": "hidden"});
+		$this.elts.css({
+			"display": "block",
+			"float": "left",
+			"margin": $this.settings.margin
+		});
 	}
 
 	/**
@@ -74,7 +78,14 @@
 	        if(!(focusX && focusX < focusPointsX && focusX > 0)) {
 	            focusX = Math.floor(focusPointsX/2);
 	        }
-	        $img.attr({"focus-x": focusX, "focus-y": focusY});
+	        $img.css({
+				"display": "block",
+				"background-size": "cover",
+				"background-origin": "border-box",
+				"box-sizing": "border-box",
+				"background-image": "url("+$img.attr("src")+")",
+				"background-position": ((focusX+1)/focusPointsX)*100+"% "+((focusY+1)/focusPointsY)*100+"% "
+			}).attr({"focus-x": focusX, "focus-y": focusY});
 	        i++;
     	}
 	}
@@ -118,11 +129,21 @@
 			else {
 				var elts = $this.lines[i].elements;
 				var nbImgs = elts.length;
-				var min = Math.max(getImageHeight.apply(elts[0]), $this.settings.lineHeight.max);
-				var j = 1;
-				while(j < nbImgs) {
-					min = Math.min(getImageHeight.apply(elts[j]), min);
-		        	j++;
+				var min = Math.min(getImageHeight.apply(elts[0]), $this.settings.lineHeight.max);
+				// Only one image, check if width ratio < 1 to resize vertically instead horizontally
+				if(nbImgs == 1) {
+					var img = elts[0];
+					var ratio = getImageWidth.apply(img)/$this.linesWidth;
+					if(ratio > 1) {
+						min = min/ratio;
+					}
+				}
+				else {
+					var j = 1;
+					while(j < nbImgs) {
+						min = Math.min(getImageHeight.apply(elts[j]), min);
+			        	j++;
+					}
 				}
 				$this.linesHeight.push(Math.max(min, $this.settings.lineHeight.min));
 				i++;
@@ -176,9 +197,6 @@
 	    var $this = this;
 		setWallLines.apply($this);
 
-	    $this.imgs.attr("style", "opacity: "+$this.imgs.css("opacity"));
-
-		$this.imgs.height($this.lineHeight);
 		for(var i = 0; i < $this.lines.length; i++) {
 			var line = $this.lines[i];
 			var height = $this.linesHeight[i];
@@ -198,34 +216,16 @@
 		var $elt = $(elt);
 		var $img = getImage.apply(elt);
 		var initWidth = getImageWidth.apply($img);
-		var initHeight = getImageHeight.apply($img);
-		var focusY = getIntAttr.apply($img, ["focus-y"]);
-        var focusX = getIntAttr.apply($img, ["focus-x"]);
-        var focusPointsY = $this.settings.focusPoints.y;
-        var focusPointsX = $this.settings.focusPoints.x;
 
 		// Resize the image
-		var ratioWidth = 1;
-		var finalWidth = initWidth + line.missing*((initWidth+$this.settings.margin*2)/line.width);
-		// Image larger than line
-		if(line.missing < 0) {
-			ratioWidth = initWidth / finalWidth;
-		}
-		else {
-			ratioWidth = finalWidth / initWidth;
-		}
+		var finalWidth = Math.floor(initWidth + line.missing*((initWidth+$this.settings.margin*2)/line.width));
 		// Firefox round pixels and can cause undesired line-breaks, so, let's floor
-		$elt.width(Math.floor(finalWidth));
-		var ratio = Math.max(ratioWidth, lineHeight/initHeight);
-		$img.width(initWidth*ratio).height(initHeight*ratio);
-
-		// Focus point
-		var marginTop = (initHeight*ratio) - lineHeight;
-		var marginLeft = (initWidth*ratio) - finalWidth;
-
-		marginTop = - (marginTop * focusY/focusPointsY);
-		marginLeft = - (marginLeft * focusX/focusPointsX);
-		$img.css({"margin-top": marginTop, "margin-left": marginLeft});
+		$elt.width(finalWidth);
+		$img.css({
+			"width": finalWidth,
+			"height": lineHeight,
+			"padding-left": finalWidth
+		});
 	}
 
 	/**
@@ -248,7 +248,7 @@
 
 	        	setAttributes.apply($this);
 
-	        	$this.imgs.attr("style", "opacity: 0");
+	        	$this.imgs.css("opacity", 0);
         		$this.imgs.on('load', function() {
         			$(this).animate({"opacity": 1}, $this.settings.fadeInTime);
 	        	});

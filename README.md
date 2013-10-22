@@ -140,5 +140,5 @@ Todo/planned
 
 - [X] update the wall (if images are added etc.)
 - [X] dynamic height
-- [ ] display the whole image when possible (only one image in the line)
+- [X] display the whole image when possible (only one image in the line)
 - [ ] infinite scroll?
