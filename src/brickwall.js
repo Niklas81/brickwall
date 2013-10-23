@@ -91,7 +91,7 @@
                 "background-origin": "border-box",
                 "box-sizing": "border-box",
                 "background-image": "url(" + $img.attr("src") + ")",
-                "background-position": (focusX / focusPointsX) * 100 + "% " + (focusY / focusPointsY) * 100 + "% "
+                "background-position": ((focusX - 0.5) / focusPointsX) * 100 + "% " + ((focusY - 0.5) / focusPointsY) * 100 + "% "
             }).attr({
                 "focus-x": focusX,
                 "focus-y": focusY
