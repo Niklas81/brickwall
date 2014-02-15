@@ -187,7 +187,7 @@
     function setWallLines() {
         var $this = this;
 
-        $this.linesWidth = $this.innerWidth();
+        $this.linesWidth = $this.innerWidth() - parseInt($this.css("padding-left")) - parseInt($this.css("padding-right"));
 
         // Compute lines
         computeLines.apply($this);
